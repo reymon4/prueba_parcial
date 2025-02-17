@@ -88,9 +88,9 @@ public class BookRest {
             var dto = new BookDTO();
             dto.setId(book.getId());
             dto.setIsbn(book.getIsbn());
-            dto.setTittle(book.getTittle());
+            dto.setTitle(book.getTitle());
             dto.setPrice(book.getPrice());
-            dto.setAuthor(author.getName() + " " + author.getLastName());
+            dto.setAuthor(author.getFirstName() + " " + author.getLastName());
             System.out.println("Libro: "+dto);
             return dto;
 
@@ -111,9 +111,9 @@ public class BookRest {
             var dto = new BookDTO();
             dto.setId(book.getId());
             dto.setIsbn(book.getIsbn());
-            dto.setTittle(book.getTittle());
+            dto.setTitle(book.getTitle());
             dto.setPrice(book.getPrice());
-            dto.setAuthor(author.getName() + " " + author.getLastName());
+            dto.setAuthor(author.getFirstName() + " " + author.getLastName());
             return Response.ok(dto).build();
         }
     }

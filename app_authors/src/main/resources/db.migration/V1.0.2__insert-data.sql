@@ -1,4 +1,4 @@
-nsert into authors (first_name, last_name) values ('nombre1', 'apellido1');
+insert into authors (first_name, last_name) values ('nombre1', 'apellido1');
 insert into authors (first_name, last_name) values ('nombre2', 'apellido2');
 
 insert into books (isbn, title, price, author_id) values ('isbn1', 'titulo1', 10.0, 1);

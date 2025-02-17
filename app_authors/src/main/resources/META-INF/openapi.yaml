@@ -5,8 +5,8 @@ info:
   version: "1.0"
 
 servers:
-  - url: http://localhost:8080/q/openapi
-    description: Optional dev mode server description
+  - url: http://localhost:8088/q/openapi
+    description: Download OPENAPI file
 
 paths:
   /authors:
@@ -15,7 +15,11 @@ paths:
         200:
           description: OK - Autores obtenidos exitosamente
           content:
-            application/json: { }
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Author'
     post:
       requestBody:
         content:
@@ -26,27 +30,31 @@ paths:
         200:
           description: OK - Nuevo autor creado exitosamente
           content:
-            application/json: { }
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Author'
   /authors/{id}:
     get:
       parameters:
         - name: id
           in: path
           required: true
-          description: ID del autor
+          description: ID del autor en DB
           schema:
             type: integer
       responses:
         200:
           description: OK - autor obtenido exitosamente
           content:
-            application/json: { }
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Author'
     put:
       parameters:
         - name: id
           in: path
           required: true
-          description: ID del autor
+          description: ID del autor en DB
           schema:
             type: integer
       requestBody:
@@ -74,27 +82,11 @@ paths:
             application/json: { }
 components:
   schemas:
-    Book:
+    Author:
       properties:
         id:
           type: integer
-        isbn:
+        firstName:
           type: string
-        title:
-          type: string
-        price:
-          type: number
-        authorId:
-          type: integer
-    BookDto:
-      properties:
-        id:
-          type: integer
-        isbn:
-          type: string
-        title:
-          type: string
-        price:
-          type: number
-        author:
+        lastName:
           type: string

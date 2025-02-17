@@ -38,21 +38,11 @@ public class AuthorRest {
     @GET
     @Path("/{id}")
     public Response findById(@PathParam("id") Integer id){
-        int value = counter.getAndIncrement();
-        if(value%5!=0){
-           String msg = String.format("Intento [%d]-%s", value, LocalDateTime.now());
-           throw new RuntimeException(msg);
-        }
-        var obj = repository.findByIdOptional(id);
-
-        if( obj.isEmpty()){
+      var obj = repository.findByIdOptional(id);
+        if(obj.isEmpty()){
             return Response.status(Response.Status.NOT_FOUND).build();
         }else{
-            String txt = String.format("[%d]-%s", port, obj.get().getName());
-            var ret = new Author();
-            ret.setId(obj.get().getId());
-            ret.setName(txt);
-            return Response.ok(ret).build();
+            return Response.ok(obj.get()).build();
         }
     }
 

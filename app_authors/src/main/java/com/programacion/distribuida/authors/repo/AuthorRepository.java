@@ -20,7 +20,7 @@ public class AuthorRepository implements PanacheRepositoryBase<Author, Integer> 
         }
 
         var authorObj = obj.get();
-        authorObj.setName(author.getName());
+        authorObj.setFirstName(author.getFirstName());
         authorObj.setLastName(author.getLastName());
         return Optional.of(authorObj);
     }

@@ -12,7 +12,7 @@ public class BookDTO {
 
     private String isbn;
 
-    private String tittle;
+    private String title;
 
     private BigDecimal price;
 

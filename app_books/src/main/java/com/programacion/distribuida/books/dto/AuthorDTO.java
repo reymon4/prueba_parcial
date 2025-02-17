@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class AuthorDTO {
     private Integer id;
-    private String name;
+    private String firstName;
     private String lastName;
 }

@@ -5,7 +5,7 @@ info:
   version: "1.0"
 
 servers:
-  - url: http://localhost:8080/q/openapi
+  - url: http://localhost:8089/q/openapi
     description: Optional dev mode server description
 
 paths:
@@ -15,7 +15,11 @@ paths:
         200:
           description: OK - Libros obtenidos exitosamente
           content:
-            application/json: { }
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BookDTO'
     post:
       requestBody:
         content:
@@ -26,45 +30,51 @@ paths:
         200:
           description: OK - Nuevo libro creado exitosamente
           content:
-            application/json: { }
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
   /books/{id}:
     get:
       parameters:
         - name: id
           in: path
           required: true
-          description: ID del libro
+          description: ID del libro en DB
           schema:
             type: integer
       responses:
         200:
           description: OK - Libro obtenido exitosamente
           content:
-            application/json: { }
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BookDTO'
     put:
       parameters:
         - name: id
           in: path
           required: true
-          description: ID del libro
+          description: ID del libro en DB
           schema:
             type: integer
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BookDTO'
+              $ref: '#/components/schemas/Book'
       responses:
         200:
           description: OK - Libro actualizado exitosamente
           content:
-            application/json: { }
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
     delete:
       parameters:
         - name: id
           in: path
           required: true
-          description: ID del libro
+          description: ID del libro en DB
           schema:
             type: integer
       responses:
@@ -86,7 +96,7 @@ components:
           type: number
         authorId:
           type: integer
-    BookDto:
+    BookDTO:
       properties:
         id:
           type: integer

@@ -20,7 +20,7 @@ public class BookRepository implements PanacheRepositoryBase<Book, Integer> {
 
         var bookObj = obj.get();
         bookObj.setIsbn(book.getIsbn());
-        bookObj.setTittle(book.getTittle());
+        bookObj.setTitle(book.getTitle());
         bookObj.setPrice(book.getPrice());
         bookObj.setAuthorId(book.getAuthorId());
         return Optional.of(bookObj);

@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app-authors
+  name: app-books
   labels:
-    app: app-authors
+    app: app-books
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
-      app: app-authors
+      app: app-books
   template:
     metadata:
-      name: app-authors
+      name: app-books
       labels:
-        app: app-authors
+        app: app-books
     spec:
       containers:
-        - name: app-authors
-          image: docker.io/reymon4/app_authors:latest
+        - name: app-books
+          image: docker.io/reymon4/app_books:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
@@ -44,11 +44,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: app-authors-services
+  name: app-books-services
 spec:
   type: ClusterIP
   selector:
-    app: app-authors
+    app: app-books
   ports:
     - protocol: TCP
       port: 8080
@@ -57,12 +57,12 @@ spec:
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: app-authors-hpa
+  name: app-books-hpa
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: app-authors
+    name: app-books
   minReplicas: 1
   maxReplicas: 10
   metrics:

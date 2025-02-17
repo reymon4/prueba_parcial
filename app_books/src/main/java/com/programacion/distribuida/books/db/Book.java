@@ -18,8 +18,8 @@ public class Book {
     @Column(name = "isbn")
     private String isbn;
 
-    @Column(name = "tittle")
-    private String tittle;
+    @Column(name = "title")
+    private String title;
 
     @Column(name = "price")
     private BigDecimal price;
