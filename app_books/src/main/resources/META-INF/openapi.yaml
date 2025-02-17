@@ -1,0 +1,100 @@
+openapi: 3.1.0
+info:
+  title: Documentación de la API de recursos de Books
+  description: Documento de los recursos de books
+  version: "1.0"
+
+servers:
+  - url: http://localhost:8080/q/openapi
+    description: Optional dev mode server description
+
+paths:
+  /books:
+    get:
+      responses:
+        200:
+          description: OK - Libros obtenidos exitosamente
+          content:
+            application/json: { }
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+      responses:
+        200:
+          description: OK - Nuevo libro creado exitosamente
+          content:
+            application/json: { }
+  /books/{id}:
+    get:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del libro
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK - Libro obtenido exitosamente
+          content:
+            application/json: { }
+    put:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del libro
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookDTO'
+      responses:
+        200:
+          description: OK - Libro actualizado exitosamente
+          content:
+            application/json: { }
+    delete:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del libro
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK - Libro eliminado exitosamente
+          content:
+            application/json: { }
+components:
+  schemas:
+    Book:
+      properties:
+        id:
+          type: integer
+        isbn:
+          type: string
+        title:
+          type: string
+        price:
+          type: number
+        authorId:
+          type: integer
+    BookDto:
+      properties:
+        id:
+          type: integer
+        isbn:
+          type: string
+        title:
+          type: string
+        price:
+          type: number
+        author:
+          type: string

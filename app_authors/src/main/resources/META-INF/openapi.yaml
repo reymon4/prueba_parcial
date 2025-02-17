@@ -1,0 +1,100 @@
+openapi: 3.1.0
+info:
+  title: Documentación de la API de recursos de Authors
+  description: Documento de los recursos de authors
+  version: "1.0"
+
+servers:
+  - url: http://localhost:8080/q/openapi
+    description: Optional dev mode server description
+
+paths:
+  /authors:
+    get:
+      responses:
+        200:
+          description: OK - Autores obtenidos exitosamente
+          content:
+            application/json: { }
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Author'
+      responses:
+        200:
+          description: OK - Nuevo autor creado exitosamente
+          content:
+            application/json: { }
+  /authors/{id}:
+    get:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del autor
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK - autor obtenido exitosamente
+          content:
+            application/json: { }
+    put:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del autor
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Author'
+      responses:
+        200:
+          description: OK - autor actualizado exitosamente
+          content:
+            application/json: { }
+    delete:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del autor
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK - autor eliminado exitosamente
+          content:
+            application/json: { }
+components:
+  schemas:
+    Book:
+      properties:
+        id:
+          type: integer
+        isbn:
+          type: string
+        title:
+          type: string
+        price:
+          type: number
+        authorId:
+          type: integer
+    BookDto:
+      properties:
+        id:
+          type: integer
+        isbn:
+          type: string
+        title:
+          type: string
+        price:
+          type: number
+        author:
+          type: string
